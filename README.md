@@ -1,5 +1,10 @@
 # douyin_api
 提供查看抖音评论，点赞，粉丝的API接口，封装在本地服务器
+## 使用方法
+pip install -r requirements.txt<br>
+在目录内输入：<br>
+python api.py<br>
+浏览其输入：127.0.0.1:5000 显示"This is DouYin API"即成功
 ## 接口文档
 |接口地址    |    参数名    |  调用例子  |  返回参数|
 | --------   | :------:   | :----: | :----:  |
