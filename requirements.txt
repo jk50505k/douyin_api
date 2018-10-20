@@ -1,0 +1,5 @@
+Flask_HTTPAuth==3.2.4
+Flask==0.12
+requests==2.12.4
+Flask_RESTful==0.3.6
+beautifulsoup4==4.6.3
