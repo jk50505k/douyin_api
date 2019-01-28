@@ -37,44 +37,9 @@ postParams={
 
 
 
-def getComment(aweme_id,cursor):
-    """"
-    获取评论
-    :param aweme_id: 视频ID
-    :param cursor: 起始的数
-    :return:
-    """
-    global more
-
-    try:
-        postParams['aweme_id']=aweme_id
-        r = requests.get("https://aweme.snssdk.com/aweme/v1/comment/list/", params=postParams,  headers=header)
-        resp=r.json()
-        #print(resp)
-        #print(r.url)
-        comments = resp['comments']
-        more=resp['has_more']
-        for i in comments:
-            commentList.append(i['user']['nickname'] + '(' + i['user']['short_id'] + ')' + ':' + i['text'])
-            print(i['user']['nickname'] + '(' + i['user']['short_id'] + ')' + ':' + i['text'])
-        if more==1:
-            cursor=cursor+40
-            print(cursor)
-            time.sleep(1*random.random())
-            getComment(aweme_id,cursor)
-
-    except Exception as e:
-        print(e)
-        time.sleep(2*random.random())
-    #getComment(aweme_id)
-
-def save():
-    with open('comment.txt','w') as fd:
-        for i in commentList:
-            fd.write(i)
-
 def apiComment(aweme_id,cursor):
     comment={}
+    postParams['cursor']=cursor
     postParams['aweme_id'] = str(aweme_id)
     r = requests.get("https://aweme.snssdk.com/aweme/v1/comment/list/", params=postParams, headers=header)
     resp = r.json()
@@ -88,8 +53,5 @@ def apiComment(aweme_id,cursor):
 
 if __name__ == '__main__':
     pass
-    #getComment(getID("http://v.douyin.com/RQN2Qf/"),0)
-    #getComment('6598428630131412232',0)
-    #save()
     #print(apiComment('6598428630131412232', 0))
     
